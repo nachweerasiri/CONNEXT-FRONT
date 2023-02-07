@@ -41,4 +41,4 @@ const validateRegister = input => {
     }
 };
 
-export default validateRegister();
+export default validateRegister;
