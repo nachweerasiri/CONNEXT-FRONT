@@ -1,3 +1,5 @@
+import LayOutProCancelFooter from "../template/LayOutProCancelFooter";
+
 export default function TradePage() {
-    return <div>Trade Page</div>;
+    return <LayOutProCancelFooter />;
 }

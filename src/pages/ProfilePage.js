@@ -1,3 +1,5 @@
+import LayOutProfileHistory from "../template/LayOutProfileHistory";
+
 export default function ProfilePage() {
-    return <div>Profile Page</div>;
+    return <LayOutProfileHistory />;
 }

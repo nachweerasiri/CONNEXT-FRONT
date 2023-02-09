@@ -1,3 +1,5 @@
+import LayOutProAddFooter from "../template/LayOutProAddFooter";
+
 export default function SellerPage() {
-    return <div>Seller Page</div>;
+    return <LayOutProAddFooter />;
 }

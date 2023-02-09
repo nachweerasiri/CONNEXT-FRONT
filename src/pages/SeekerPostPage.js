@@ -1,3 +1,5 @@
+import LayOutProCancelFooter from "../template/LayOutProCancelFooter";
+
 export default function SeekerPostPage() {
-    return <div>Seeker Post Page</div>;
+    return <LayOutProCancelFooter />;
 }

@@ -6,12 +6,25 @@
 }
 
 .container-mobile {
+    /* display: flex;
+    justify-content: center;
+    align-items: center;
     margin: auto;
-    min-height: 100vh;
+    min-height: 900px;
     max-width: 393px;
-    width: 100%;
-    background-image: url("./assets/images/BG.svg");
-    background-repeat: no-repeat;
+    width: 100%; */
+    background: rgb(174, 59, 104);
+    background: linear-gradient(
+        90deg,
+        rgba(174, 59, 104, 1) 0%,
+        rgba(0, 0, 0, 1) 30%,
+        rgba(0, 0, 0, 1) 50%,
+        rgba(0, 0, 0, 1) 70%,
+        rgba(70, 14, 162, 1) 100%
+    );
+    /* background-image: url("./assets/images/BG.svg"); */
+    /* background-repeat: no-repeat; */
+    /* background-size: contain; */
 }
 
 .font-hind {

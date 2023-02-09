@@ -12,21 +12,103 @@ import SellerPostPage from "../pages/SellerPostPage";
 import TradePage from "../pages/TradePage";
 import HistoryPage from "../pages/HistoryPage";
 import TradeHistoryPage from "../pages/TradeHistoryPage";
+import RedirectIfAuthenticate from "../features/auth/RedirectIfAuthenticate";
+import ProtectRoute from "../features/auth/ProtectedRoute";
 
 // Function ที่เอาไว้ทำหน้าที่ config router, element คือ map ไปยัง <.../>
 const router = createBrowserRouter([
-    { path: "/login", element: <LoginPage /> },
-    { path: "/register", element: <RegisterPage /> },
-    { path: "/", element: <SellerPage /> },
-    { path: "/profile", element: <ProfilePage /> },
-    { path: "/addticket", element: <AddTicketPage /> },
-    { path: "/seeker", element: <SeekerPage /> },
-    { path: "/seller", element: <SellerPage /> },
-    { path: "/seekerpost", element: <SeekerPostPage /> },
-    { path: "/sellerpost", element: <SellerPostPage /> },
-    { path: "/trade", element: <TradePage /> },
-    { path: "/history", element: <HistoryPage /> },
-    { path: "/tradehistory", element: <TradeHistoryPage /> },
+    {
+        path: "/login",
+        element: (
+            <RedirectIfAuthenticate>
+                <LoginPage />
+            </RedirectIfAuthenticate>
+        ),
+    },
+    {
+        path: "/register",
+        element: <RegisterPage />,
+    },
+    {
+        path: "/",
+        element: (
+            <ProtectRoute>
+                <SellerPage />
+            </ProtectRoute>
+        ),
+    },
+    {
+        path: "/profile",
+        element: (
+            <ProtectRoute>
+                <ProfilePage />
+            </ProtectRoute>
+        ),
+    },
+    {
+        path: "/addticketpage",
+        element: (
+            <ProtectRoute>
+                <AddTicketPage />
+            </ProtectRoute>
+        ),
+    },
+    {
+        path: "/seeker",
+        element: (
+            <ProtectRoute>
+                <SeekerPage />
+            </ProtectRoute>
+        ),
+    },
+    {
+        path: "/seller",
+        element: (
+            <ProtectRoute>
+                <SellerPage />
+            </ProtectRoute>
+        ),
+    },
+    {
+        path: "/seekerpost",
+        element: (
+            <ProtectRoute>
+                <SeekerPostPage />
+            </ProtectRoute>
+        ),
+    },
+    {
+        path: "/sellerpost",
+        element: (
+            <ProtectRoute>
+                <SellerPostPage />
+            </ProtectRoute>
+        ),
+    },
+    {
+        path: "/trade",
+        element: (
+            <ProtectRoute>
+                <TradePage />
+            </ProtectRoute>
+        ),
+    },
+    {
+        path: "/history",
+        element: (
+            <ProtectRoute>
+                <HistoryPage />
+            </ProtectRoute>
+        ),
+    },
+    {
+        path: "/tradehistory",
+        element: (
+            <ProtectRoute>
+                <TradeHistoryPage />
+            </ProtectRoute>
+        ),
+    },
 ]);
 
 export default function Router() {

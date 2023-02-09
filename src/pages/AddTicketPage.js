@@ -1,3 +1,5 @@
+import LayOutProCancelFooter from "../template/LayOutProCancelFooter";
+
 export default function AddTicketPage() {
-    return <div>Add Ticket Page</div>;
+    return <LayOutProCancelFooter />;
 }

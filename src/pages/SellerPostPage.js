@@ -1,3 +1,5 @@
+import LayOutProCancelFooter from "../template/LayOutProCancelFooter";
+
 export default function SellerPostPage() {
-    return <div>Seller Post Page</div>;
+    return <LayOutProCancelFooter />;
 }

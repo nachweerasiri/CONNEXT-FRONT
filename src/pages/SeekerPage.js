@@ -1,3 +1,5 @@
+import LayOutProAddFooter from "../template/LayOutProAddFooter";
+
 export default function SeekerPage() {
-    return <div>Seeker Page</div>;
+    return <LayOutProAddFooter />;
 }
