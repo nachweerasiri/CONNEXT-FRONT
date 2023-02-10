@@ -1,19 +1,48 @@
 // import ProfilePicBig from "../assets/icons/ProfilePicBig.png";
+import myPost from "../assets/icons/myPost.png";
 import AddTicketBig from "../assets/icons/AddTicketBig.png";
 import Logout from "../assets/icons/Logout.png";
 // import UserName from "../assets/icons/UserName.png";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+// import useLoading from "../hooks/useLoading";
+import { useEffect, useState } from "react";
+import * as userApi from "../apis/user-api";
 
 /** ตัวนี้ทำให้สามารถใช้ข้อมูลของ user ได้จาก useContext */
 // Function ที่ใช้ตัว AuthContext
 import useAuth from "../hooks/useAuth";
 import Avatar from "../components/Avatar";
 
-export default function LayOutProfileHistory() {
+export default function LayOutProfileHistory({ onSuccess, updateProfileUser }) {
     const { logout, authenticatedUser } = useAuth();
 
     const [file, setFile] = useState(null);
+
+    // const { startLoading, stopLoading } = useLoading();
+    useEffect(() => {
+        if (file) {
+            const formData = new FormData();
+            formData.append("profileImage", file);
+            userApi.updateProfile(formData);
+        }
+        // const handleChangeAvatar = async () => {
+        // updateProfile(res.data);
+        // updateProfileUser(res.data);
+        // };
+        // handleChangeAvatar();
+    }, [file]);
+
+    // const handleChangeAvatar = async () => {
+    //     startLoading();
+    //     const formData = new FormData();
+    //     formData.append("profileImage", file);
+    //     const res = await userApi.updateProfile(formData);
+    //     updateProfile(res.data);
+    //     updateProfileUser(res.data);
+    //     stopLoading();
+    //     setFile(null);
+    //     onSuccess();
+    // };
 
     return (
         <>
@@ -79,8 +108,17 @@ export default function LayOutProfileHistory() {
                         </div>
                     </div>
                 </div>
-                <div className="grid justify-items-stretch h-[5vh]">
-                    <div className="flex justify-self-center items-center">
+                <div className="flex justify-center items-end h-[5vh]">
+                    <div className="">
+                        <img
+                            src={myPost}
+                            className="mx-auto"
+                            alt="myPost"
+                            height="106"
+                            width="250"
+                        />
+                    </div>
+                    {/* <div className="flex justify-self-center items-center">
                         <div className="bg-seller text-white rounded-l-3xl text-lg">
                             <Link className="navbar-brand" to="/profile">
                                 <button>My Posts</button>
@@ -91,11 +129,11 @@ export default function LayOutProfileHistory() {
                                 <button>History</button>
                             </Link>
                         </div>
-                    </div>
+                    </div> */}
                 </div>
                 <div className="grid justify-items-stretch h-[55vh]">
                     <div className="flex justify-self-center justify-between w-10/12">
-                        <div className="bg-black w-full text-white rounded-3xl">
+                        <div className=" w-full text-white rounded-3xl">
                             body
                         </div>
                     </div>

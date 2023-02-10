@@ -7,15 +7,15 @@ import validateLogin from "../../validators/validate-login";
 import * as authApi from "../../apis/auth-api";
 import useLoading from "../../hooks/useLoading";
 
-const initialInput = {
-    yourEmail: "",
-    newPassword: "",
-};
+// const initialInput = {
+//     yourEmail: "",
+//     newPassword: "",
+// };
 
 export default function LoginForm() {
     /** ใช้ State */
-    const [email, setEmail] = useState(initialInput);
-    const [password, setPassword] = useState(initialInput);
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
     const [error, setError] = useState({});
 
     const { login } = useAuth();
