@@ -1,14 +1,31 @@
 // import ProfilePicSmall from "../assets/icons/ProfilePicSmall.png";
 import AddTicket from "../assets/icons/AddTicket.svg";
-import { Link } from "react-router-dom";
+import CancelButton from "../assets/icons/CancelButton.png";
+import { Link, useLocation } from "react-router-dom";
+
+import { Outlet } from "react-router-dom";
 
 import useAuth from "../hooks/useAuth";
 import Avatar from "../components/Avatar";
 
-export default function LayOutProAddFooter() {
+export default function LayOutProAddFooter({ isMain = true }) {
+    const location = useLocation().pathname.split("/")[1];
+    let pageName = location;
+    if (location === "AddticketPage") {
+        pageName = "ADD TICKET";
+    } else if (location === "seeker") {
+        pageName = "SEEKER";
+    } else if (location === "seller") {
+        pageName = "SELLER";
+    } else if (location === "seekerPost") {
+        pageName = "SEEKER";
+    } else if (location === "sellerPost") {
+        pageName = "SELLER";
+    }
     const {
         authenticatedUser: { profileImage },
     } = useAuth();
+
     return (
         <>
             <div className="container-mobile">
@@ -30,26 +47,43 @@ export default function LayOutProAddFooter() {
                                 /> */}
                             </Link>
                         </div>
-                        <div className="text-white">Title</div>
+                        <div className="text-white">{pageName}</div>
                         <div>
                             <Link className="navbar-brand" to="/AddticketPage">
-                                <img
-                                    src={AddTicket}
-                                    className="mx-auto"
-                                    alt="AddTicket"
-                                    height="106"
-                                />
+                                {isMain ? (
+                                    <img
+                                        src={AddTicket}
+                                        className="mx-auto"
+                                        alt="AddTicket"
+                                        height="106"
+                                    />
+                                ) : (
+                                    <Link
+                                        className="navbar-brand"
+                                        to="/profile"
+                                    >
+                                        <img
+                                            src={CancelButton}
+                                            className="mx-auto"
+                                            alt="CancelButton"
+                                            height="106"
+                                        />
+                                    </Link>
+                                )}
                             </Link>
                         </div>
                     </div>
                 </div>
+                {/* header */}
                 <div className="grid justify-items-stretch h-[75vh]">
-                    <div className="flex justify-self-center justify-between w-10/12">
+                    <Outlet />
+                    {/* <div className="flex justify-self-center justify-between w-10/12">
                         <div className="bg-black w-full text-white rounded-3xl">
                             body
                         </div>
-                    </div>
+                    </div> */}
                 </div>
+                {/* footer */}
                 <div className="grid justify-items-stretch h-[10vh]">
                     <div className="flex justify-self-center items-center">
                         <div className="bg-seller text-white rounded-l-3xl text-lg">

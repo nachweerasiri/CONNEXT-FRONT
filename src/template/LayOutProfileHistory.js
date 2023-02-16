@@ -18,6 +18,12 @@ export default function LayOutProfileHistory({ onSuccess, updateProfileUser }) {
 
     const [file, setFile] = useState(null);
 
+    // const handleChangeAvatar = async () => {
+    //     const formData = new FormData();
+    //     formData.append('profileImage', file);
+    //     await userApi.updateProfile(formData)
+    // }
+
     // const { startLoading, stopLoading } = useLoading();
     useEffect(() => {
         if (file) {
@@ -97,6 +103,7 @@ export default function LayOutProfileHistory({ onSuccess, updateProfileUser }) {
                                 height="106"
                                 width="111"
                             /> */}
+
                             <Link className="navbar-brand" to="/AddticketPage">
                                 <img
                                     src={AddTicketBig}
@@ -134,7 +141,7 @@ export default function LayOutProfileHistory({ onSuccess, updateProfileUser }) {
                 <div className="grid justify-items-stretch h-[55vh]">
                     <div className="flex justify-self-center justify-between w-10/12">
                         <div className=" w-full text-white rounded-3xl">
-                            body
+                            {/* body */}
                         </div>
                     </div>
                 </div>

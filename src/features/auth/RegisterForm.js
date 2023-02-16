@@ -4,6 +4,7 @@ import Input from "../../components/Input";
 import validateRegister from "../../validators/validate-register";
 import * as authApi from "../../apis/auth-api";
 import useLoading from "../../hooks/useLoading";
+import { useNavigate } from "react-router-dom";
 
 const initialInput = {
     userName: "",
@@ -16,6 +17,8 @@ export default function RegisterForm() {
     // ค่าเริ่มต้นของแต่ละ Input แทนด้วย initialInput
     const [input, setInput] = useState(initialInput);
     const [error, setError] = useState({});
+
+    const navigate = useNavigate();
 
     /** destructuring */
     const { startLoading, stopLoading } = useLoading();
@@ -48,6 +51,7 @@ export default function RegisterForm() {
         } finally {
             stopLoading();
         }
+        navigate("/login");
     };
 
     return (

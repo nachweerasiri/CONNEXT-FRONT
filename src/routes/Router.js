@@ -14,6 +14,7 @@ import HistoryPage from "../pages/HistoryPage";
 import TradeHistoryPage from "../pages/TradeHistoryPage";
 import RedirectIfAuthenticate from "../features/auth/RedirectIfAuthenticate";
 import ProtectRoute from "../features/auth/ProtectedRoute";
+import LayOutProAddFooter from "../template/LayOutProAddFooter";
 
 // Function ที่เอาไว้ทำหน้าที่ config router, element คือ map ไปยัง <.../>
 const router = createBrowserRouter([
@@ -33,7 +34,7 @@ const router = createBrowserRouter([
         path: "/",
         element: (
             <ProtectRoute>
-                <SellerPage />
+                <ProfilePage />
             </ProtectRoute>
         ),
     },
@@ -45,46 +46,71 @@ const router = createBrowserRouter([
             </ProtectRoute>
         ),
     },
+    // {
+    //     path: "/addticketpage",
+    //     element: (
+    //         <ProtectRoute>
+    //             <AddTicketPage />
+    //         </ProtectRoute>
+    //     ),
+    // },
+
+    ////////////////////////////////////////////////////////
     {
-        path: "/addticketpage",
+        path: "/",
         element: (
             <ProtectRoute>
-                <AddTicketPage />
+                <LayOutProAddFooter />
             </ProtectRoute>
         ),
+        children: [
+            { path: "seeker", element: <SeekerPage /> },
+            { path: "seller", element: <SellerPage /> },
+            { path: "seeker/seekerPost/:postId", element: <SeekerPostPage /> },
+            { path: "seller/sellerPost/:postId", element: <SellerPostPage /> },
+        ],
     },
     {
-        path: "/seeker",
+        path: "/",
         element: (
             <ProtectRoute>
-                <SeekerPage />
+                <LayOutProAddFooter isMain={false} />
             </ProtectRoute>
         ),
+        children: [{ path: "addticketpage", element: <AddTicketPage /> }],
     },
-    {
-        path: "/seller",
-        element: (
-            <ProtectRoute>
-                <SellerPage />
-            </ProtectRoute>
-        ),
-    },
-    {
-        path: "/seekerpost",
-        element: (
-            <ProtectRoute>
-                <SeekerPostPage />
-            </ProtectRoute>
-        ),
-    },
-    {
-        path: "/sellerpost",
-        element: (
-            <ProtectRoute>
-                <SellerPostPage />
-            </ProtectRoute>
-        ),
-    },
+    // {
+    //     path: "/seeker",
+    //     element: (
+    //         <ProtectRoute>
+    //             <SeekerPage />
+    //         </ProtectRoute>
+    //     ),
+    // },
+    // {
+    //     path: "/seller",
+    //     element: (
+    //         <ProtectRoute>
+    //             <SellerPage />
+    //         </ProtectRoute>
+    //     ),
+    // },
+    // {
+    //     path: "/seekerpost",
+    //     element: (
+    //         <ProtectRoute>
+    //             <SeekerPostPage />
+    //         </ProtectRoute>
+    //     ),
+    // },
+    // {
+    //     path: "/sellerpost",
+    //     element: (
+    //         <ProtectRoute>
+    //             <SellerPostPage />
+    //         </ProtectRoute>
+    //     ),
+    // },
     {
         path: "/trade",
         element: (

@@ -6,15 +6,18 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import AuthContextProvider from "./contexts/AuthContext";
 import LoadingContextProvider from "./contexts/LoadingContext";
+import PostContextProvider from "./contexts/postContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
     <React.StrictMode>
-        <LoadingContextProvider>
-            <AuthContextProvider>
-                <App />
-            </AuthContextProvider>
-        </LoadingContextProvider>
+        <PostContextProvider>
+            <LoadingContextProvider>
+                <AuthContextProvider>
+                    <App />
+                </AuthContextProvider>
+            </LoadingContextProvider>
+        </PostContextProvider>
     </React.StrictMode>
 );
 

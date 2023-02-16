@@ -1,10 +1,9 @@
 import { useState } from "react";
-// import { toast } from "react-toastify";
-import Input from "../components/Input";
+import { toast } from "react-toastify";
+import Input from "../../components/Input";
 // import * as authApi from "../../apis/auth-api";
 // import useLoading from "../../hooks/useLoading";
-import UploadPoster from "../assets/icons/posterImage.png";
-import { createPost } from "../apis/post-api";
+import UploadPoster from "../../assets/icons/posterImage.png";
 
 const initialInput = {
     topic: "",
@@ -13,7 +12,7 @@ const initialInput = {
     contact: "",
 };
 
-export default function AddTicketPage() {
+export default function Postform() {
     // ค่าเริ่มต้นของแต่ละ Input แทนด้วย initialInput
     const [input, setInput] = useState(initialInput);
     const [file, setFile] = useState(null);
@@ -25,29 +24,7 @@ export default function AddTicketPage() {
     // ใน {} คือ function ที่เอาไว้อัพเดท state
     const handleChangeInput = e => {
         setInput({ ...input, [e.target.name]: e.target.value });
-        // toast.success("Success add Ticket!");
-    };
-
-    const handleClickSeeker = () => {
-        const formData = new FormData();
-        formData.append("topic", input.topic);
-        formData.append("price", input.price);
-        formData.append("description", input.description);
-        formData.append("contact", input.contact);
-        formData.append("postType", "seeker");
-        formData.append("posterImage", file);
-        createPost(formData);
-    };
-
-    const handleClickSeller = () => {
-        const formData = new FormData();
-        formData.append("topic", input.topic);
-        formData.append("price", input.price);
-        formData.append("description", input.description);
-        formData.append("contact", input.contact);
-        formData.append("postType", "seller");
-        formData.append("posterImage", file);
-        createPost(formData);
+        toast.success("Success add Ticket!");
     };
 
     return (
@@ -57,7 +34,7 @@ export default function AddTicketPage() {
                     placeholder="Topic"
                     name="topic"
                     value={input.topic}
-                    onChange={handleChangeInput}
+                    onChange={e => setInput(e.target.value)}
                 />
             </div>
             <div className="col-6">
@@ -65,15 +42,15 @@ export default function AddTicketPage() {
                     placeholder="Price"
                     name="price"
                     value={input.price}
-                    onChange={handleChangeInput}
+                    onChange={e => setInput(e.target.value)}
                 />
             </div>
             <div className="col-6">
                 <Input
                     placeholder="Description"
                     name="description"
-                    value={input.description}
-                    onChange={handleChangeInput}
+                    value={input.newPassword}
+                    onChange={e => setInput(e.target.value)}
                 />
             </div>
             <div className="col-6">
@@ -81,7 +58,7 @@ export default function AddTicketPage() {
                     placeholder="Contact"
                     name="contact"
                     value={input.contact}
-                    onChange={handleChangeInput}
+                    onChange={e => setInput(e.target.value)}
                 />
             </div>
             <div>
@@ -101,8 +78,9 @@ export default function AddTicketPage() {
                     onClick={() => document.getElementById("chooseImg").click()}
                 >
                     <img
-                        /** เช็คว่า file มีค่ามั้ย ถ้ามีจะเป็น URL.createObjectURL(file) ถ้าไม่ก็จะ return ไฟล์รูป UploadPoster  */
-                        src={file ? URL.createObjectURL(file) : UploadPoster}
+                        src={
+                            file ? URL.createObjectURL(file) : <UploadPoster />
+                        }
                         className="mx-auto"
                         alt="posterImage"
                         height="106"
@@ -115,17 +93,41 @@ export default function AddTicketPage() {
             <div className="grid justify-items-stretch">
                 <div className="flex justify-self-center items-center">
                     <div className="bg-seller text-white rounded-l-3xl text-lg">
-                        <button type="button" onClick={handleClickSeeker}>
-                            Seeker
-                        </button>
+                        <button>Seeker</button>
                     </div>
                     <div className="bg-seeker text-white rounded-r-3xl text-lg">
-                        <button type="button" onClick={handleClickSeller}>
-                            Seller
-                        </button>
+                        <button>Seller</button>
                     </div>
                 </div>
             </div>
         </form>
     );
 }
+
+/** ปุ่มอัพรูปโปสเตอร์ จากเทาๆ */
+// function FileButton() {
+//     return (
+//         <div>
+//             <input
+//                 type="file"
+//                 className="hidden"
+//                 id="chooseImg"
+//                 accept="image/*"
+//                 onChange={e => {
+//                     if (e.target.files[0]) {
+//                         setFile(e.target.files[0]);
+//                     }
+//                 }}
+//                 multiple
+//             />
+//             <div onClick={() => document.getElementById("chooseImg").click()}>
+//                 <img
+//                     src={UploadPoster}
+//                     className="mx-auto"
+//                     alt="posterImage"
+//                     height="106"
+//                 />
+//             </div>
+//         </div>
+//     );
+// }
