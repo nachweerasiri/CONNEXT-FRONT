@@ -12,165 +12,124 @@ import * as userApi from "../apis/user-api";
 // Function ที่ใช้ตัว AuthContext
 import useAuth from "../hooks/useAuth";
 import Avatar from "../components/Avatar";
+import Background from "../components/background/Background";
 
 export default function LayOutProfileHistory({ onSuccess, updateProfileUser }) {
-    const { logout, authenticatedUser } = useAuth();
+  const { logout, authenticatedUser } = useAuth();
 
-    const [file, setFile] = useState(null);
+  const [file, setFile] = useState(null);
 
+  // const handleChangeAvatar = async () => {
+  //     const formData = new FormData();
+  //     formData.append('profileImage', file);
+  //     await userApi.updateProfile(formData)
+  // }
+
+  // const { startLoading, stopLoading } = useLoading();
+  const onChangeProfileImage = async (file) => {
+    if (file) {
+      const formData = new FormData();
+      formData.append("profileImage", file);
+      await userApi.updateProfile(formData);
+    }
+  };
+  useEffect(() => {
     // const handleChangeAvatar = async () => {
-    //     const formData = new FormData();
-    //     formData.append('profileImage', file);
-    //     await userApi.updateProfile(formData)
-    // }
-
-    // const { startLoading, stopLoading } = useLoading();
-    useEffect(() => {
-        if (file) {
-            const formData = new FormData();
-            formData.append("profileImage", file);
-            userApi.updateProfile(formData);
-        }
-        // const handleChangeAvatar = async () => {
-        // updateProfile(res.data);
-        // updateProfileUser(res.data);
-        // };
-        // handleChangeAvatar();
-    }, [file]);
-
-    // const handleChangeAvatar = async () => {
-    //     startLoading();
-    //     const formData = new FormData();
-    //     formData.append("profileImage", file);
-    //     const res = await userApi.updateProfile(formData);
-    //     updateProfile(res.data);
-    //     updateProfileUser(res.data);
-    //     stopLoading();
-    //     setFile(null);
-    //     onSuccess();
+    // updateProfile(res.data);
+    // updateProfileUser(res.data);
     // };
+    // handleChangeAvatar();
+  }, [file]);
 
-    return (
-        <>
-            <div className="container-mobile">
-                <div className="grid justify-items-stretch h-[20vh] py-5">
-                    <div className="flex justify-self-center justify-between w-10/12 items-center">
-                        <div>
-                            <input
-                                type="file"
-                                className="hidden"
-                                id="chooseImg"
-                                accept="image/*"
-                                onChange={e => {
-                                    if (e.target.files[0]) {
-                                        setFile(e.target.files[0]);
-                                    }
-                                }}
-                                multiple
-                            />
-                            <div
-                                onClick={() =>
-                                    document.getElementById("chooseImg").click()
-                                }
-                            >
-                                <Avatar
-                                    src={
-                                        file
-                                            ? URL.createObjectURL(file)
-                                            : authenticatedUser.profileImage
-                                    }
-                                    // src={authenticatedUser.profileImage}
-                                    size="130"
-                                    className="mx-auto"
-                                    height="106"
-                                />
-                            </div>
-                            {/* <img
-                                src={ProfilePicBig}
-                                className="mx-auto"
-                                alt="ProfilePicBig"
-                                height="106"
-                            /> */}
-                        </div>
-                        <div>
-                            <span className="text-white text-xl font-extrabold">
-                                {authenticatedUser.userName}
-                            </span>
-                            {/* <img
-                                src={UserName}
-                                className="mx-auto"
-                                alt="UserName"
-                                height="106"
-                                width="111"
-                            /> */}
+  // const handleChangeAvatar = async () => {
+  //     startLoading();
+  //     const formData = new FormData();
+  //     formData.append("profileImage", file);
+  //     const res = await userApi.updateProfile(formData);
+  //     updateProfile(res.data);
+  //     updateProfileUser(res.data);
+  //     stopLoading();
+  //     setFile(null);
+  //     onSuccess();
+  // };
 
-                            <Link className="navbar-brand" to="/AddticketPage">
-                                <img
-                                    src={AddTicketBig}
-                                    className="mx-auto"
-                                    alt="AddTicketBig"
-                                    height="106"
-                                />
-                            </Link>
-                        </div>
-                    </div>
-                </div>
-                <div className="flex justify-center items-end h-[5vh]">
-                    <div className="">
-                        <img
-                            src={myPost}
-                            className="mx-auto"
-                            alt="myPost"
-                            height="106"
-                            width="250"
-                        />
-                    </div>
-                    {/* <div className="flex justify-self-center items-center">
-                        <div className="bg-seller text-white rounded-l-3xl text-lg">
-                            <Link className="navbar-brand" to="/profile">
-                                <button>My Posts</button>
-                            </Link>
-                        </div>
-                        <div className="bg-seeker text-white rounded-r-3xl text-lg">
-                            <Link className="navbar-brand" to="/history">
-                                <button>History</button>
-                            </Link>
-                        </div>
-                    </div> */}
-                </div>
-                <div className="grid justify-items-stretch h-[55vh]">
-                    <div className="flex justify-self-center justify-between w-10/12">
-                        <div className=" w-full text-white rounded-3xl">
-                            {/* body */}
-                        </div>
-                    </div>
-                </div>
-                <div className="grid justify-items-stretch h-[10vh]">
-                    <div className="flex justify-self-center items-center">
-                        <img
-                            src={Logout}
-                            className="h-20 w-21"
-                            alt="Logout"
-                            height="106"
-                            onClick={logout}
-                        />
-                    </div>
-                </div>
-                <div className="grid justify-items-stretch h-[10vh]">
-                    <div className="flex justify-self-center items-center">
-                        <div className="bg-seller text-white rounded-l-3xl text-lg">
-                            <Link className="navbar-brand" to="/seeker">
-                                <button>Seeker</button>
-                            </Link>
-                        </div>
-                        <div className="bg-seeker text-white rounded-r-3xl text-lg">
-                            <Link className="navbar-brand" to="/seller">
-                                <button>Seller</button>
-                            </Link>
-                        </div>
-                    </div>
-                </div>
+  return (
+    <>
+      <div className="grid justify-items-stretch h-[20vh] py-5">
+        <div className="flex justify-self-center justify-between w-10/12 items-center">
+          <div>
+            <input
+              type="file"
+              className="hidden"
+              id="chooseImg"
+              accept="image/*"
+              onChange={(e) => {
+                if (e.target.files[0]) {
+                  setFile(e.target.files[0]);
+                  onChangeProfileImage(e.target.files[0]);
+                }
+              }}
+              multiple
+            />
+            <div onClick={() => document.getElementById("chooseImg").click()}>
+              <Avatar
+                src={file ? URL.createObjectURL(file) : authenticatedUser.profileImage}
+                // src={authenticatedUser.profileImage}
+                size="130"
+                className="mx-auto"
+                height="106"
+              />
             </div>
-        </>
-    );
+          </div>
+          <div className="flex flex-col ">
+            <span className="text-white text-xl font-extrabold">{authenticatedUser.userName}</span>
+
+            <Link className="navbar-brand" to="/AddticketPage">
+              <img src={AddTicketBig} className="mx-auto" alt="AddTicketBig" height="106" />
+            </Link>
+          </div>
+        </div>
+      </div>
+      {/* My post and History */}
+      <div className="flex items-center h-[13vh] px-7 fixed w-full z-40">
+        <div className="flex grow justify-around bg-gradient-to-r from-[#460EA2] to-[#AE3A68] p-3 rounded-full">
+          <div>
+            <Link className="navbar-brand" to="/profile">
+              <button className="text-white font-semibold text-lg">My posts</button>
+            </Link>
+          </div>
+          <div>
+            <Link className="navbar-brand" to="/profile">
+              <button className="text-white font-semibold text-lg">History</button>
+            </Link>
+          </div>
+        </div>
+      </div>
+      <div className="grid justify-items-stretch h-[57vh]">
+        <div className="flex justify-self-center justify-between w-10/12">
+          <div className=" w-full text-white rounded-3xl">{/* body */}</div>
+        </div>
+      </div>
+      <div className="grid justify-items-stretch h-[10vh]">
+        <div className="flex justify-self-center items-center">
+          <img src={Logout} className="h-20 w-21" alt="Logout" height="106" onClick={logout} />
+        </div>
+      </div>
+      <div className="flex items-center h-[13vh] px-7 fixed w-full shadow-lg z-40">
+        <div className="flex grow justify-around bg-gradient-to-r from-[#460EA2] to-[#AE3A68] p-3 rounded-full">
+          <div>
+            <Link className="navbar-brand" to="/seeker">
+              <button className="text-white font-semibold text-lg">Seeker</button>
+            </Link>
+          </div>
+          <div>
+            <Link className="navbar-brand" to="/seller">
+              <button className="text-white font-semibold text-lg">Seller</button>
+            </Link>
+          </div>
+        </div>
+      </div>
+      <Background />
+    </>
+  );
 }
