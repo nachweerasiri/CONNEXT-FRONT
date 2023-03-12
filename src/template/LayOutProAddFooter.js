@@ -66,7 +66,7 @@ export default function LayOutProAddFooter({ isMain = true }) {
                     </div> */}
       </div>
       {/* footer */}
-      <div className="flex items-center h-[13vh] px-7 fixed w-full z-40">
+      {/* <div className="flex items-center h-[13vh] px-7 fixed w-full z-40">
         <div className="flex grow justify-around bg-gradient-to-r from-[#460EA2] to-[#AE3A68] p-3 rounded-full  shadow-lg">
           <div>
             <Link className="navbar-brand" to="/seeker">
@@ -79,7 +79,7 @@ export default function LayOutProAddFooter({ isMain = true }) {
             </Link>
           </div>
         </div>
-      </div>
+      </div> */}
       <Background />
     </>
   );

@@ -81,8 +81,8 @@ export default function LayOutProfileHistory({ onSuccess, updateProfileUser }) {
               />
             </div>
           </div>
-          <div className="flex flex-col ">
-            <span className="text-white text-xl font-extrabold">{authenticatedUser.userName}</span>
+          <div className="flex flex-col">
+            <span className="text-white text-4xl font-extrabold">{authenticatedUser.userName}</span>
 
             <Link className="navbar-brand" to="/AddticketPage">
               <img src={AddTicketBig} className="mx-auto" alt="AddTicketBig" height="106" />
@@ -115,7 +115,7 @@ export default function LayOutProfileHistory({ onSuccess, updateProfileUser }) {
           <img src={Logout} className="h-20 w-21" alt="Logout" height="106" onClick={logout} />
         </div>
       </div>
-      <div className="flex items-center h-[13vh] px-7 fixed w-full shadow-lg z-40">
+      {/* <div className="flex items-center h-[13vh] px-7 fixed w-full shadow-lg z-40">
         <div className="flex grow justify-around bg-gradient-to-r from-[#460EA2] to-[#AE3A68] p-3 rounded-full">
           <div>
             <Link className="navbar-brand" to="/seeker">
@@ -128,7 +128,7 @@ export default function LayOutProfileHistory({ onSuccess, updateProfileUser }) {
             </Link>
           </div>
         </div>
-      </div>
+      </div> */}
       <Background />
     </>
   );

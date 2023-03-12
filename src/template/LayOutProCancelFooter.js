@@ -1,6 +1,6 @@
 // import ProfilePicSmall from "../assets/icons/ProfilePicSmall.png";
 import CancelButton from "../assets/icons/CancelButton.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import useAuth from "../hooks/useAuth";
 import Avatar from "../components/Avatar";
@@ -10,6 +10,8 @@ export default function LayOutProCancelFooter() {
   const {
     authenticatedUser: { profileImage }
   } = useAuth();
+
+  const navigate = useNavigate();
   return (
     <>
       <div className="grid justify-items-stretch h-[15vh]">
@@ -26,7 +28,7 @@ export default function LayOutProCancelFooter() {
             </Link>
           </div>
           <div className="text-white font-semibold text-2xl">TRADE</div>
-          <div>
+          <div onClick={() => navigate(-1)}>
             <img src={CancelButton} className="mx-auto" alt="CancelButton" height="106" />
           </div>
         </div>

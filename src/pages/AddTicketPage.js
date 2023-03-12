@@ -5,7 +5,8 @@ import Input from "../components/Input";
 // import useLoading from "../../hooks/useLoading";
 import UploadPoster from "../assets/icons/posterImage.png";
 import { createPost } from "../apis/post-api";
-
+import { Link, useLocation } from "react-router-dom";
+import VerticalSpace from "../components/VerticalSpace";
 const initialInput = {
   topic: "",
   price: "",
@@ -86,7 +87,9 @@ export default function AddTicketPage() {
               onChange={handleChangeInput}
             />
           </div>
-          <div className="flex justify-center items-center gap-6">
+          <VerticalSpace />
+
+          <div className="flex justify-center items-center gap-6 ">
             <input
               type="file"
               className="hidden"
@@ -127,6 +130,20 @@ export default function AddTicketPage() {
             </div>
           </div>
         </form>
+      </div>
+      <div className="flex items-center px-7 bottom-8 fixed w-full z-40">
+        <div className="flex grow justify-around bg-gradient-to-r from-[#460EA2] to-[#AE3A68] p-3 rounded-full">
+          <div>
+            <Link className="navbar-brand" to="/seeker">
+              <button className="text-white font-semibold text-lg">Seeker</button>
+            </Link>
+          </div>
+          <div>
+            <Link className="navbar-brand" to="/seller">
+              <button className="text-white font-semibold text-lg">Seller</button>
+            </Link>
+          </div>
+        </div>
       </div>
     </>
   );
