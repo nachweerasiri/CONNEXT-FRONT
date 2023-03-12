@@ -5,7 +5,7 @@ import Input from "../components/Input";
 // import useLoading from "../../hooks/useLoading";
 import UploadPoster from "../assets/icons/posterImage.png";
 import { createPost } from "../apis/post-api";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import VerticalSpace from "../components/VerticalSpace";
 const initialInput = {
   topic: "",
@@ -50,6 +50,8 @@ export default function AddTicketPage() {
     formData.append("posterImage", file);
     createPost(formData);
   };
+
+  const navigate = useNavigate();
 
   return (
     <>
@@ -118,12 +120,24 @@ export default function AddTicketPage() {
                 <h1>For</h1>
               </div>
               <div className="bg-gradient-to-r from-[#460EA2] to-[#0E0025] text-white rounded-full font-bold text-2xl px-6 p-5 shadow-xl">
-                <button type="button" onClick={handleClickSeeker}>
+                <button
+                  type="button"
+                  onClick={() => {
+                    handleClickSeeker();
+                    navigate(`/seeker`);
+                  }}
+                >
                   Seeker
                 </button>
               </div>
               <div className="bg-gradient-to-r from-[#AE3A68] to-[#25000F] text-white rounded-full font-bold text-2xl px-6 p-5 shadow-xl">
-                <button type="button" onClick={handleClickSeller}>
+                <button
+                  type="button"
+                  onClick={() => {
+                    handleClickSeller();
+                    navigate(`/seller`);
+                  }}
+                >
                   Seller
                 </button>
               </div>

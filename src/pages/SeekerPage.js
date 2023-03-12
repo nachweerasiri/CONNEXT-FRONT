@@ -18,7 +18,7 @@ export default function SeekerPage() {
   const { setCurrentPost } = usePost();
   return (
     <>
-      <div className="w-[100vw] flex flex-wrap justify-center">
+      <div className="w-[100vw] overflow-auto flex flex-wrap justify-center">
         {arrSeeker.map((item, index) => (
           /** เอา item ที่ .map มา */
           <div className=" w-[40%] m-[10px] flex justify-center">
